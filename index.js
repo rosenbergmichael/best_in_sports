@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // we do something with the data that we fetched
       for (const post of posts){
         let p = new Post(post.team, post.sport, post.moment)
+        p.renderPost();
       }
 
     })

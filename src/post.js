@@ -7,5 +7,20 @@ class Post{
 
   //render post instance method
 
+  renderPost() {
+    let postsDiv = document.getElementById("posts-container")
+
+    postsDiv.innerHTML +=
+    `
+    <ul>
+    <h3>${this.team} (${this.sport})</h3><br>
+    <li>
+    ${this.moment}   
+    </li>
+    </ul>
+
+    `
+  }
+
 }
 
