@@ -13,7 +13,7 @@ class Post{
     postsDiv.innerHTML +=
     `
     <ul>
-    <h3>${this.team} (${this.sport})</h3><br>
+    <h3>${this.team} (${this.sport})</h3>
     <li>
     ${this.moment}   
     </li>

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  createForm()
   fetchPosts()
 })
 
@@ -23,6 +24,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //create- create a new post
 
+    //create form
+    //add event listener
+    //once form is submitted => fetch 'post' to my backend
+    //do something with the returned object
+
+    function createForm(){
+      let postsForm = document.getElementById("posts-form")
+
+      postsForm.innerHTML +=
+      `
+      <form>
+        Team: <input type="text id="team"><br>
+        Sport: <input type="text id="sport"><br>
+        Description: <input type="text id="moment"><br><br>
+        <input type="submit" value="Add"
+        <br>
+        <br>
+      </form>
+      `
+    }
 
 
   //update- update a post
