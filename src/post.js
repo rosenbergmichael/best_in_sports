@@ -5,6 +5,7 @@ class Post{
     this.moment = moment;
   }
 
- 
+  //render post instance method
+
 }
 
