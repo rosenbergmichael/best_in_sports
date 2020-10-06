@@ -1,1 +1,3 @@
-// test 
+document.addEventListener("DOMContentLoaded", () => {
+  debugger;
+})
