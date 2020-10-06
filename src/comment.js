@@ -1,5 +1,6 @@
 class Comment{
-  constructor(body){
+  constructor(id, body){
+    this.id = id;
     this.body = body;
   }
 

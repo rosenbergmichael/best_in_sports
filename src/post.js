@@ -1,5 +1,6 @@
 class Post{
-  constructor(team, sport, moment){
+  constructor(id, team, sport, moment){
+    this.id = id;
     this.team = team;
     this.sport = sport;
     this.moment = moment;
@@ -13,12 +14,16 @@ class Post{
     postsDiv.innerHTML +=
     `
     <ul>
+    <br>
     <li><h3>${this.team} (${this.sport})</h3>
     ${this.moment}   
     </li>
     <br>
     </ul>
-
+    <button class="delete-button" data-id=${this.id} onclick="deletePost()">Delete</button>
+    <br>
+    <br>
+    <br>
     `
   }
 

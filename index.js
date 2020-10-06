@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(posts => {
       // we do something with the data that we fetched
       for (const post of posts){
-        let p = new Post(post.team, post.sport, post.moment)
+        let p = new Post(post.id, post.team, post.sport, post.moment)
         p.renderPost();
       }
 
@@ -41,11 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="submit" value="Add"
         <br>
         <br>
+        <br>
+        <h2>All Posts</h2>
       </form>
       `
-
       postsForm.addEventListener("submit", postFormSubmit)
-      
+
     }
 
     function postFormSubmit(){
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(resp => resp.json())
       .then(post => {
-        let p = new Post(post.team, post.sport, post.moment)
+        let p = new Post(post.id, post.team, post.sport, post.moment)
         p.renderPost();
       })
 
@@ -80,6 +81,22 @@ document.addEventListener("DOMContentLoaded", () => {
   //update- update a post
 
 
-
   //delete- delete a post
 
+    function deletePost(){
+      let postId = parseInt(event.target.dataset.id)
+
+      fetch(`${BASE_URL}/posts/${postId}`, {
+        method: 'DELETE'
+      })
+
+      this.location.reload()
+    }
+
+  // let buttons = document.getElementsByClassName("delete-button")
+  // console.log(buttons)
+  // for (const button of buttons){
+  //   button.addEventListener("click", () => {
+  //     debugger;
+  //   })
+  // }
