@@ -16,7 +16,8 @@ class Post{
     <ul>
     <br>
     <li><h3>${this.team} (${this.sport})</h3>
-    ${this.moment}   
+    <p>${this.moment}</p>
+    <h3>Comments: </h3> 
     </li>
     <br>
     </ul>
