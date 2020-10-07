@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   createForm()
   fetchPosts()
+  createCommentForm()
+  fetchComments()
 })
 
   const BASE_URL = "http://127.0.0.1:3000"
@@ -100,3 +102,83 @@ document.addEventListener("DOMContentLoaded", () => {
   //     debugger;
   //   })
   // }
+
+
+
+
+
+
+
+
+ //read- fetch comments index
+
+ function fetchComments(){
+  fetch(`${BASE_URL}/comments`)
+  .then(resp => resp.json())
+  .then(comments => {
+    // we do something with the data that we fetched
+    for (const comment of comments){
+      let c = new Comment(comment.id, comment.body)
+      c.renderComment();
+    }
+
+  })
+}
+
+
+  //create- create a new comment
+
+
+    function createCommentForm(){
+      let commentsForm = document.getElementById("comments-form")
+
+      commentsForm.innerHTML +=
+      `
+      <form id="commentform">
+        Comment: <textarea id="body"></textarea><br>
+        <input type="submit" value="Add Comment"
+        <br>
+      </form>
+      `
+      commentsForm.addEventListener("submit", commentFormSubmit)
+
+    }
+
+
+    function commentFormSubmit(){
+      event.preventDefault();
+      let body = document.getElementById("body").value
+
+      let comment = {
+        body: body
+      }
+
+      fetch(`${BASE_URL}/comments`, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(comment)
+      })
+      .then(resp => resp.json())
+      .then(comment => {
+        let c = new Comment(comment.id, comment.body)
+        c.renderComment();
+        document.getElementById("commentform").reset();
+      })
+
+    }
+
+
+     //delete- delete a comment
+
+     function deleteComment(){
+      let commentId = parseInt(event.target.dataset.id)
+
+      fetch(`${BASE_URL}/comments/${commentId}`, {
+        method: 'DELETE'
+      })
+
+      this.location.reload()
+    }
