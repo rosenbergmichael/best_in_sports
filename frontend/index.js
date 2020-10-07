@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       postsForm.innerHTML +=
       `
-      <form>
+      <form id="postform">
         Team: <input type="text" id="team">
         Sport: <input type="text" id="sport"><br><br>
         Description: <textarea id="moment"></textarea><br><br>
@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(post => {
         let p = new Post(post.id, post.team, post.sport, post.moment)
         p.renderPost();
+        document.getElementById("postform").reset();
       })
 
     }
