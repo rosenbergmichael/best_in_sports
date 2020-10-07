@@ -35,14 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
       postsForm.innerHTML +=
       `
       <form>
-        Team: <input type="text" id="team"><br><br>
+        Team: <input type="text" id="team">
         Sport: <input type="text" id="sport"><br><br>
-        Description: <input type="text" id="moment"><br><br>
+        Description: <textarea id="moment"></textarea><br><br>
         <input type="submit" value="Add"
         <br>
         <br>
         <br>
-        <h2>All Posts</h2>
       </form>
       `
       postsForm.addEventListener("submit", postFormSubmit)

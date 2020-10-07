@@ -22,8 +22,6 @@ class Post{
     </ul>
     <button class="delete-button" data-id=${this.id} onclick="deletePost()">Delete</button>
     <br>
-    <br>
-    <br>
     `
   }
 
