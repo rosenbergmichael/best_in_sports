@@ -17,16 +17,21 @@ class Post{
     <br>
     <li><h3>${this.team} (${this.sport})</h3>
     <p>${this.moment}</p>
-    <h3>Comments: </h3> 
+    <h4>Rating: </h4>
+    <h4>Average Rating: </h4>
     </li>
     <br>
     </ul>
-
-    <button class="delete-button" data-id=${this.id} onclick="deletePost()">Delete</button>
-    <br>
-    <br>
+    
     `
   }
 
 }
 
+// removed from line 25
+
+// <button class="delete-button" data-id=${this.id} onclick="deletePost()">Delete</button>
+
+// // removed from lines 20 and 21
+// <h4>Add a Comment</h4>
+// <h3>Comments: </h3> 
