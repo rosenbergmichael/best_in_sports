@@ -7,15 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Post.create(team: "New York Giants", sport: "Football", moment: "OBJ's one handed catch versus Dallas")
-Comment.create(post_id: 1, body: "I was at that game!")
-Comment.create(post_id: 2, body: "I was at that game!")
-Comment.create(post_id: 4, body: "I was at that game!")
-Comment.create(post_id: 5, body: "I was at that game!")
 
-# create_table "comments", force: :cascade do |t|
-#   t.text "body"
+
+# create_table "ratings", force: :cascade do |t|
+#   t.integer "rating"
 #   t.integer "post_id"
 #   t.datetime "created_at", precision: 6, null: false
 #   t.datetime "updated_at", precision: 6, null: false
-#   t.index ["post_id"], name: "index_comments_on_post_id"
+#   t.index ["post_id"], name: "index_ratings_on_post_id"
 # end
