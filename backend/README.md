@@ -1,24 +1,31 @@
-# README
+# Best In Sports
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Abc
 
-Things you may want to cover:
 
-* Ruby version
+## Install Instructions
 
-* System dependencies
+To use this app:
 
-* Configuration
+  -Fork and clone this repo
 
-* Database creation
+  -Run 'bundle install'
 
-* Database initialization
+  -Run 'rake db:migrate'
 
-* How to run the test suite
+  -Run 'rails s'
 
-* Services (job queues, cache servers, search engines, etc.)
+  -In separate terminal, enter 'open index.html'
 
-* Deployment instructions
 
-* ...
+
+## Contributing
+
+Bug reports and pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+
