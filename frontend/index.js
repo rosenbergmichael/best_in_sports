@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   createForm()
   fetchPosts()
   
+  // createRatingForm()
+  // fetchRatings()
 })
 
   const BASE_URL = "http://127.0.0.1:3000"
@@ -13,10 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(`${BASE_URL}/posts`)
     .then(resp => resp.json())
     .then(posts => {
-      // we do something with the data that we fetched
       for (const post of posts){
-        let p = new Post(post.id, post.team, post.sport, post.moment)
+        let p = new Post(post.id, post.team, post.sport, post.moment, post.ratings)
         p.renderPost();
+        
       }
 
     })
@@ -25,10 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //create- create a new post
 
-    //create form
-    //add event listener
-    //once form is submitted => fetch 'post' to my backend
-    //do something with the returned object
+   
 
     function createForm(){
       let postsForm = document.getElementById("posts-form")
@@ -71,28 +70,24 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(resp => resp.json())
       .then(post => {
-        let p = new Post(post.id, post.team, post.sport, post.moment)
+        let p = new Post(post.id, post.team, post.sport, post.moment, post.ratings)
         p.renderPost();
         document.getElementById("postform").reset();
       })
 
     }
 
+  //delete- delete a post (REMOVE WHEN DONE WITH PROJECT, JUST KEEPING TO TEST POSTS)
 
-  //update- update a post
+    function deletePost(){
+      let postId = parseInt(event.target.dataset.id)
 
+      fetch(`${BASE_URL}/posts/${postId}`, {
+        method: 'DELETE'
+      })
 
-  //delete- delete a post
-
-    // function deletePost(){
-    //   let postId = parseInt(event.target.dataset.id)
-
-    //   fetch(`${BASE_URL}/posts/${postId}`, {
-    //     method: 'DELETE'
-    //   })
-
-    //   this.location.reload()
-    // }
+      this.location.reload()
+    }
 
   // let buttons = document.getElementsByClassName("delete-button")
   // console.log(buttons)
@@ -109,68 +104,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-//  //read- fetch comments index
+//  //read- fetch ratings index
 
-//  function fetchComments(){
-//   fetch(`${BASE_URL}/comments`)
+//  function fetchRatings(){
+//   fetch(`${BASE_URL}/ratings`)
 //   .then(resp => resp.json())
-//   .then(comments => {
-//     // we do something with the data that we fetched
-//     for (const comment of comments){
-//       let c = new Comment(comment.id, comment.body)
-//       c.renderComment();
+//   .then(ratings => {
+//     for (const rating of ratings){
+//       let r = new Rating(rating.id, rating.rating, rating.post_id)
+//       r.renderRating();
 //     }
 
 //   })
 // }
 
 
-  //create- create a new comment
+  //create- create a new rating
 
 
-    // function createCommentForm(){
-    //   let commentsForm = document.getElementById("comments-form")
+    // function createRatingForm(){
+    //   let ratingsForm = document.getElementById("ratings-form")
 
-    //   commentsForm.innerHTML +=
+    //   ratingsForm.innerHTML +=
     //   `
-    //   <form id="commentform">
-    //     Comment: <textarea id="body"></textarea><br>
-    //     <input type="submit" value="Add Comment"
+    //   <form id="ratingform">
+    //     Rating: <input type="text" id="rating"><br>
+    //     <input type="submit" value="Add Rating"
     //     <br>
     //   </form>
     //   `
-    //   commentsForm.addEventListener("submit", commentFormSubmit)
+    //   ratingsForm.addEventListener("submit", ratingFormSubmit)
 
     // }
 
 
-    // function commentFormSubmit(){
-    //   event.preventDefault();
-    //   let body = document.getElementById("body").value
+    function ratingFormSubmit(e){
+      e.preventDefault();
 
-    //   let comment = {
-    //     body: body
-    //   }
+      let rating = e.target.querySelector(".rating").value
+      let post_id = e.target.id
+      let rat = {
+        rating: {
+          rating, post_id
+        }
+      }
 
-    //   fetch(`${BASE_URL}/comments`, {
-    //     method: "POST",
-    //     headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(comment)
-    //   })
-    //   .then(resp => resp.json())
-    //   .then(comment => {
-    //     let c = new Comment(comment.id, comment.body)
-    //     c.renderComment();
-    //     document.getElementById("commentform").reset();
-    //   })
+      fetch(`${BASE_URL}/ratings`, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(rat)
+      })
+      .then(resp => resp.json())
+      .then(rat => {
+        let r = new Rating(rating.id, rating.rating, rating.post_id)
+        r.renderRating();
+        e.target.reset();
+      })
 
-    // }
+    }
 
 
-     //delete- delete a comment
+     //delete- delete a rating
 
     //  function deleteComment(){
     //   let commentId = parseInt(event.target.dataset.id)

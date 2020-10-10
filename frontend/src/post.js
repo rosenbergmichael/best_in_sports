@@ -1,15 +1,20 @@
 class Post{
-  constructor(id, team, sport, moment){
+  constructor(id, team, sport, moment, ratings){
     this.id = id;
     this.team = team;
     this.sport = sport;
     this.moment = moment;
+   
+    this.ratings = ratings;
   }
 
   //render post instance method
 
   renderPost() {
     let postsDiv = document.getElementById("posts-container")
+    let allRatings = this.ratings.map((element) => {
+      return element.rating;
+      })
 
     postsDiv.innerHTML +=
     `
@@ -17,21 +22,25 @@ class Post{
     <br>
     <li><h3>${this.team} (${this.sport})</h3>
     <p>${this.moment}</p>
-    <h4>Rating: </h4>
-    <h4>Average Rating: </h4>
-    </li>
     <br>
-    </ul>
-    
-    `
-  }
+    <form id="${this.id}">
+        Rating(0-100): <input type="text" class="rating"><br>
+        <input type="submit" value="Add Rating">
+        <br>
+      </form>
 
+    <h4>Ratings: </h4>${allRatings}
+    </li>
+    </ul>
+    <button class="delete-button" data-id=${this.id} onclick="deletePost()">Delete</button>
+    `
+
+    postsDiv.addEventListener("submit", ratingFormSubmit)
+    
+  }
 }
 
-// removed from line 25
 
-// <button class="delete-button" data-id=${this.id} onclick="deletePost()">Delete</button>
 
-// // removed from lines 20 and 21
-// <h4>Add a Comment</h4>
-// <h3>Comments: </h3> 
+// REMOVE DELETE WHEN DONE WITH PROJECT, JUST KEEPING TO TEST POSTS)
+
