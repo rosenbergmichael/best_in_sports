@@ -4,7 +4,6 @@ class Post{
     this.team = team;
     this.sport = sport;
     this.moment = moment;
-   
     this.ratings = ratings;
   }
 
@@ -16,6 +15,9 @@ class Post{
       return element.rating;
       })
 
+    // let averagerating= (allRatings) => allRatings.reduce((a,b) => a + b)/allRatings.length;
+    //   console.log(averagerating(allRatings));
+      
     postsDiv.innerHTML +=
     `
     <ul>
@@ -24,7 +26,7 @@ class Post{
     <p>${this.moment}</p>
     <br>
     <form id="${this.id}">
-        Rating(0-100): <input type="text" class="rating"><br>
+        <strong>Rating(0-100): </strong><input type="text" class="rating"><br>
         <input type="submit" value="Add Rating">
         <br>
       </form>

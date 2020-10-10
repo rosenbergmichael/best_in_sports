@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   createForm()
-  fetchPosts()
-  
-  // createRatingForm()
-  // fetchRatings()
+  fetchPosts()    
+  fetchRatings()
+
 })
 
   const BASE_URL = "http://127.0.0.1:3000"
@@ -48,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    function postFormSubmit(){
-      event.preventDefault();
+    function postFormSubmit(e){
+      e.preventDefault();
       let team = document.getElementById("team").value
       let sport = document.getElementById("sport").value
       let moment = document.getElementById("moment").value
@@ -89,13 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
       this.location.reload()
     }
 
-  // let buttons = document.getElementsByClassName("delete-button")
-  // console.log(buttons)
-  // for (const button of buttons){
-  //   button.addEventListener("click", () => {
-  //     debugger;
-  //   })
-  // }
 
 
 
@@ -106,17 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //  //read- fetch ratings index
 
-//  function fetchRatings(){
-//   fetch(`${BASE_URL}/ratings`)
-//   .then(resp => resp.json())
-//   .then(ratings => {
-//     for (const rating of ratings){
-//       let r = new Rating(rating.id, rating.rating, rating.post_id)
-//       r.renderRating();
-//     }
+ function fetchRatings(){
+  fetch(`${BASE_URL}/ratings`)
+  .then(resp => resp.json())
+  .then(ratings => {
+    for (const rating of ratings){
+      let r = new Rating(rating.id, rating.rating, rating.post_id)
+      // r.renderRating();
+    }
 
-//   })
-// }
+  })
+}
 
 
   //create- create a new rating
@@ -160,21 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(resp => resp.json())
       .then(rat => {
         let r = new Rating(rating.id, rating.rating, rating.post_id)
-        r.renderRating();
+        // fetchPosts();
+        // r.renderRating();
+        // renderPost()
         e.target.reset();
       })
 
     }
-
-
-     //delete- delete a rating
-
-    //  function deleteComment(){
-    //   let commentId = parseInt(event.target.dataset.id)
-
-    //   fetch(`${BASE_URL}/comments/${commentId}`, {
-    //     method: 'DELETE'
-    //   })
-
-    //   this.location.reload()
-    // }
