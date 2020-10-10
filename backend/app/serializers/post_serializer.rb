@@ -1,3 +1,4 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :team, :sport, :moment, :ratings
+  attributes :id, :team, :sport, :moment
+  has_many :ratings
 end

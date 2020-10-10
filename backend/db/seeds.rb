@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Post.create(team: "New York Giants", sport: "Football", moment: "OBJ's one handed catch versus Dallas")
+Rating.create(rating: 100, post_id: 2)
+
+
+
+
+
 
 
 # create_table "ratings", force: :cascade do |t|
