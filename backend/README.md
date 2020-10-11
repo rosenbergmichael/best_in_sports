@@ -1,6 +1,6 @@
-# Best In Sports
+# Best in Sports
 
-Abc
+A simple, easy to use app for keeping track of your favorite sports team's moments!  Add your own or view posts from others, and leave ratings to see what's considered the best of the best!
 
 
 ## Install Instructions
@@ -15,7 +15,7 @@ To use this app:
 
   -Run 'rails s'
 
-  -In separate terminal, enter 'open index.html'
+  -In a separate terminal, enter 'open index.html'
 
 
 

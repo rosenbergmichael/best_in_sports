@@ -6,20 +6,20 @@ class Rating{
   }
 
   
-  // renderRating() {
-  //   // fetchPosts()
+  renderRating() {
+    // fetchPosts()
     
-  //   let ratingsDiv = document.getElementById("ratings-container")
+    let ratingsDiv = document.getElementById("ratings-container")
 
-  //   ratingsDiv.innerHTML +=
-  //   `
-  //   <ul>
-  //   <li>${this.rating}
-  //   <p>post id: ${this.post_id}</p>
-  //   </li>
-  //   </ul>
-  //   ` 
+    ratingsDiv.innerHTML +=
+    `
+    <ul>
+    <li>${this.rating}
+    <p>post id: ${this.post_id}</p>
+    </li>
+    </ul>
+    ` 
     
-  // }
+  }
 }
 

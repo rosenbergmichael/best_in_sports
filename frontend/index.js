@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })
 
+
   const BASE_URL = "http://127.0.0.1:3000"
 
 
@@ -17,16 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
       for (const post of posts){
         let p = new Post(post.id, post.team, post.sport, post.moment, post.ratings)
         p.renderPost();
-        
       }
-
     })
   }
 
 
   //create- create a new post
-
-   
 
     function createForm(){
       let postsForm = document.getElementById("posts-form")
@@ -76,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-  //delete- delete a post (REMOVE WHEN DONE WITH PROJECT, JUST KEEPING TO TEST POSTS)
+  //delete- delete a post
 
     function deletePost(){
       let postId = parseInt(event.target.dataset.id)
@@ -91,12 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
-
-
-//  //read- fetch ratings index
+//read- fetch ratings index
 
  function fetchRatings(){
   fetch(`${BASE_URL}/ratings`)
