@@ -6,20 +6,14 @@ class Rating{
   }
 
   
-  renderRating() {
-    // fetchPosts()
+  render() {
     
-    let ratingsDiv = document.getElementById("ratings-container")
-
-    ratingsDiv.innerHTML +=
-    `
-    <ul>
+    return `
     <li>${this.rating}
-    <p>post id: ${this.post_id}</p>
     </li>
-    </ul>
     ` 
     
   }
+  
 }
 

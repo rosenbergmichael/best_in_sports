@@ -1,13 +1,16 @@
+let postsDiv
 document.addEventListener("DOMContentLoaded", () => {
+  postsDiv = document.getElementById("posts-container")
+
   createForm()
   fetchPosts()    
-  fetchRatings()
+
+
 
 })
 
-
+  let allPosts = []
   const BASE_URL = "http://127.0.0.1:3000"
-
 
   //read- fetch posts index
 
@@ -15,13 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(`${BASE_URL}/posts`)
     .then(resp => resp.json())
     .then(posts => {
-      for (const post of posts){
-        let p = new Post(post.id, post.team, post.sport, post.moment, post.ratings)
-        p.renderPost();
-      }
+      allPosts = posts.map(post => {
+        return new Post(post.id, post.team, post.sport, post.moment, post.ratings)
+      })
+      
+      renderPosts()
     })
   }
 
+  function renderPosts() {
+    postsDiv.innerHTML = ''
+    allPosts.forEach(post => {
+      post.render()
+    })
+
+  }
 
   //create- create a new post
 
@@ -39,10 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <br>
         <br>
       </form>
+
       `
+    
       postsForm.addEventListener("submit", postFormSubmit)
 
     }
+
 
     function postFormSubmit(e){
       e.preventDefault();
@@ -67,7 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(resp => resp.json())
       .then(post => {
         let p = new Post(post.id, post.team, post.sport, post.moment, post.ratings)
-        p.renderPost();
+        allPosts.push(p)
+        p.render();
         document.getElementById("postform").reset();
       })
 
@@ -77,30 +92,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function deletePost(){
       let postId = parseInt(event.target.dataset.id)
-
+      // console.log(postId)
       fetch(`${BASE_URL}/posts/${postId}`, {
-        method: 'DELETE'
+        method: 'DELETE', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       })
+      
+      renderPosts()
 
-      this.location.reload()
     }
+
+
+    // New delete ?
+
+    // let buttons = document.getElementsByClassName("delete-button")
+    // console.log(buttons)
+    // for (const button of buttons){
+    //   button.addEventListener("click", () => {
+    //     debugger;
+    //   })
+    // }
+
 
 
 
 
 //read- fetch ratings index
 
- function fetchRatings(){
-  fetch(`${BASE_URL}/ratings`)
-  .then(resp => resp.json())
-  .then(ratings => {
-    for (const rating of ratings){
-      let r = new Rating(rating.id, rating.rating, rating.post_id)
-      // r.renderRating();
-    }
+//  function fetchRatings(){
+//   fetch(`${BASE_URL}/ratings`)
+//   .then(resp => resp.json())
+//   .then(ratings => {
+//     for (const rating of ratings){
+//       let r = new Rating(rating.id, rating.rating, rating.post_id)
+//       // r.renderRating();
+//     }
 
-  })
-}
+//   })
+// }
 
 
   //create- create a new rating
@@ -142,12 +174,14 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(rat)
       })
       .then(resp => resp.json())
-      .then(rat => {
+      .then(rating => {
+        let post = allPosts.find(p => p.id == rating.post_id)
         let r = new Rating(rating.id, rating.rating, rating.post_id)
-        // fetchPosts();
-        // r.renderRating();
-        // renderPost()
+        post.ratings.push(r)
+        renderPosts()
+
         e.target.reset();
+        
       })
 
     }

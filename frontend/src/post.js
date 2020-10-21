@@ -4,16 +4,16 @@ class Post{
     this.team = team;
     this.sport = sport;
     this.moment = moment;
-    this.ratings = ratings;
+    this.ratings = ratings.map((r) => {
+      return new Rating(r.id, r.rating, r.post_id)
+    });
   }
 
-  //render post instance method
 
-  renderPost() {
-    let postsDiv = document.getElementById("posts-container")
-    let allRatings = this.ratings.map((element) => {
-      return element.rating;
-      })
+  render() {
+    let allRatings = this.ratings.map((rating) => {
+      return rating.render();
+      }).join('')
 
     // let averagerating= (allRatings) => allRatings.reduce((a,b) => a + b)/allRatings.length;
     //   console.log(averagerating(allRatings));
@@ -31,14 +31,27 @@ class Post{
         <br>
       </form>
 
-    <h4>Ratings: </h4>${allRatings}
+    <h4>Ratings: </h4>
+    <ul class="ratings">
+    ${allRatings}
+    </ul>
+
     </li>
     </ul>
-    <button class="delete-button" data-id=${this.id} onclick="deletePost()">Delete</button>
+    <input type="button" value="Delete" class="deletebutton" data-id="${this.id}" onClick="deletePost()">
+
     `
 
     postsDiv.addEventListener("submit", ratingFormSubmit)
-    
+
   }
 }
 
+
+{/* <input type="button" value="Delete" class="deletebutton" data-id="${this.id}" onClick="deletePost()"></input> */}
+
+ // <button class="deletebutton" data-id=${this.id}>Delete</button>
+    // onClick="deletePost()"
+  
+// let buttonElement = postsDiv.querySelector(".deletebutton")
+// buttonElement.addEventListener("click", deletePost);
