@@ -1,3 +1,17 @@
+# TO DO
+
+-Either fix or remove delete functionality
+
+-Clean up code, commit
+
+-Walk through code to make sure I can explain it all
+
+-Remember and understand adding button to change background color/DOM manipulation, event listeners, getElementByClass/Id, etc.
+
+-Continue watching DOM manip videos/reviewing notes
+
+
+
 # FOR 2ND PROJECT REVIEW:
 
 Change Background Color Button:
@@ -42,15 +56,88 @@ IF TIME/CAN FIGURE IT OUT:
 
 
 
+Average rating/sort by rating/etc. :
+
+<!-- // let averagerating= (allRatings) => allRatings.reduce((a,b) => a + b)/allRatings.length;
+//   console.log(averagerating(allRatings)); -->
+      
 
 
-# Post has_many ratings
-# Rating belongs_to post
 
-# Post
-# -team: string
-# -sport: string
-# -moment: text
+Delete functionality from Post.js :
+<!-- 
+{/* <input type="button" value="Delete" class="deletebutton" data-id="${this.id}" onClick="deletePost()"></input> */}
 
-# Rating
-# -rating: integer
+ // <button class="deletebutton" data-id=${this.id}>Delete</button>
+    // onClick="deletePost()"
+  
+// let buttonElement = postsDiv.querySelector(".deletebutton")
+// buttonElement.addEventListener("click", deletePost); -->
+
+
+Delete functions from index.js that might not be used :
+<!-- 
+//delete- delete a post
+
+    function deletePost(){
+      let postId = parseInt(event.target.dataset.id)
+      // console.log(postId)
+      fetch(`${BASE_URL}/posts/${postId}`, {
+        method: 'DELETE', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      renderPosts()
+
+    }
+
+
+    // New delete ?
+
+    // let buttons = document.getElementsByClassName("delete-button")
+    // console.log(buttons)
+    // for (const button of buttons){
+    //   button.addEventListener("click", () => {
+    //     debugger;
+    //   })
+    // } -->
+
+
+Ratings functions from index.js that weren't being used :
+
+<!-- 
+//read- fetch ratings index
+
+//  function fetchRatings(){
+//   fetch(`${BASE_URL}/ratings`)
+//   .then(resp => resp.json())
+//   .then(ratings => {
+//     for (const rating of ratings){
+//       let r = new Rating(rating.id, rating.rating, rating.post_id)
+//       // r.renderRating();
+//     }
+
+//   })
+// }
+
+
+  //create- create a new rating
+
+
+    // function createRatingForm(){
+    //   let ratingsForm = document.getElementById("ratings-form")
+
+    //   ratingsForm.innerHTML +=
+    //   `
+    //   <form id="ratingform">
+    //     Rating: <input type="text" id="rating"><br>
+    //     <input type="submit" value="Add Rating"
+    //     <br>
+    //   </form>
+    //   `
+    //   ratingsForm.addEventListener("submit", ratingFormSubmit)
+
+    // } -->

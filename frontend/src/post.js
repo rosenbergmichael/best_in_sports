@@ -15,9 +15,6 @@ class Post{
       return rating.render();
       }).join('')
 
-    // let averagerating= (allRatings) => allRatings.reduce((a,b) => a + b)/allRatings.length;
-    //   console.log(averagerating(allRatings));
-      
     postsDiv.innerHTML +=
     `
     <ul>
@@ -25,7 +22,7 @@ class Post{
     <li><h3>${this.team} (${this.sport})</h3>
     <p>${this.moment}</p>
     <br>
-    <form id="${this.id}">
+      <form id="${this.id}">
         <strong>Rating(0-100): </strong><input type="text" class="rating"><br>
         <input type="submit" value="Add Rating">
         <br>
@@ -35,23 +32,18 @@ class Post{
     <ul class="ratings">
     ${allRatings}
     </ul>
-
     </li>
     </ul>
-    <input type="button" value="Delete" class="deletebutton" data-id="${this.id}" onClick="deletePost()">
-
+    <input type="button" value="Delete" class="deletebutton" data-id="${this.id}"></input>
     `
 
-    postsDiv.addEventListener("submit", ratingFormSubmit)
+    postsDiv.addEventListener("submit", ratingFormSubmit)   
 
+    let db = postsDiv.querySelectorAll(".deletebutton")
+    for (var i = 0 ; i < db.length; i++) {
+      db[i].addEventListener('click' , deletePost) ; 
+   }
+   
   }
+
 }
-
-
-{/* <input type="button" value="Delete" class="deletebutton" data-id="${this.id}" onClick="deletePost()"></input> */}
-
- // <button class="deletebutton" data-id=${this.id}>Delete</button>
-    // onClick="deletePost()"
-  
-// let buttonElement = postsDiv.querySelector(".deletebutton")
-// buttonElement.addEventListener("click", deletePost);
