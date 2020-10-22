@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <br>
         <br>
       </form>
-
+        
       `
     
       postsForm.addEventListener("submit", postFormSubmit)

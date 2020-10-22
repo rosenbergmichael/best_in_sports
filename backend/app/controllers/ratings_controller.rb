@@ -25,18 +25,18 @@ class RatingsController < ApplicationController
   end
 
   # PATCH/PUT /ratings/1
-  def update
-    if @rating.update(rating_params)
-      render json: @rating
-    else
-      render json: @rating.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @rating.update(rating_params)
+  #     render json: @rating
+  #   else
+  #     render json: @rating.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /ratings/1
-  def destroy
-    @rating.destroy
-  end
+  # def destroy
+  #   @rating.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

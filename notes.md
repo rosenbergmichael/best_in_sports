@@ -1,9 +1,5 @@
 # TO DO
 
--Either fix or remove delete functionality
-
--Clean up code, commit
-
 -Walk through code to make sure I can explain it all
 
 -Remember and understand adding button to change background color/DOM manipulation, event listeners, getElementByClass/Id, etc.
